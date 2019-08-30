@@ -46,9 +46,26 @@ function createPin() {
   pin.time = $('#pinTime').val();
   pin.layout = {};
   pin.layout.type = "genericPin";
-  pin.layout.title = $('#pinTitle').val();
-  pin.layout.body = $('#pinBody').val();
-  pin.layout.subtitle = $('#pinSubtitle').val();
+
+  if ($('#pinTitle').val() != null && $('#pinTitle').val() != "") {
+    pin.layout.title = "&lt;&lt;&lt;" + $('#pinTitle').val() + "&gt;&gt;&gt;";
+  } else {
+    pin.layout.title = "";
+  }
+
+  if ($('#pinBody').val() != null && $('#pinBody').val() != "") {
+    pin.layout.body = "&lt;&lt;&lt;" + $('#pinBody').val() + "&gt;&gt;&gt;";
+  } else {
+    pin.layout.body = "";
+  }
+
+  if ($('#pinSubtitle').val() != null && $('#pinSubtitle').val() != "") {
+    pin.layout.subtitle = "&lt;&lt;&lt;" + $('#pinSubtitle').val() + "&gt;&gt;&gt;";
+  } else {
+    pin.layout.subtitle = "";
+  }
+
+  // pin.layout.subtitle = "<<<" + $('#pinSubtitle').val() + ">>>";
   pin.layout.tinyIcon = "system://images/" + $('#pinIcon').val();
   pin.token = $('#timelineToken').val();
 
