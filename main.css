@@ -11,6 +11,9 @@ body {
 small {
 	cursor: pointer;
 }
+.smol {
+	font-size: 10px;
+}
 .footer {
 	position: absolute;
 	bottom: 0;
