@@ -48,19 +48,22 @@ function createPin() {
   pin.layout.type = "genericPin";
 
   if ($('#pinTitle').val() != null && $('#pinTitle').val() != "") {
-    pin.layout.title = "&lt;&lt;&lt;" + $('#pinTitle').val() + "&gt;&gt;&gt;";
+    //pin.layout.title = "&lt;&lt;&lt;" + $('#pinTitle').val() + "&gt;&gt;&gt;";
+    pin.layout.title = $('#pinTitle').val();
   } else {
     pin.layout.title = "";
   }
 
   if ($('#pinBody').val() != null && $('#pinBody').val() != "") {
-    pin.layout.body = "&lt;&lt;&lt;" + $('#pinBody').val() + "&gt;&gt;&gt;";
+    //pin.layout.body = "&lt;&lt;&lt;" + $('#pinBody').val() + "&gt;&gt;&gt;";
+    pin.layout.body = $('#pinBody').val();
   } else {
     pin.layout.body = "";
   }
 
   if ($('#pinSubtitle').val() != null && $('#pinSubtitle').val() != "") {
-    pin.layout.subtitle = "&lt;&lt;&lt;" + $('#pinSubtitle').val() + "&gt;&gt;&gt;";
+    //pin.layout.subtitle = "&lt;&lt;&lt;" + $('#pinSubtitle').val() + "&gt;&gt;&gt;";
+    pin.layout.subtitle = $('#pinSubtitle').val();
   } else {
     pin.layout.subtitle = "";
   }
