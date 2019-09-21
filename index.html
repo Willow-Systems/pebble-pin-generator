@@ -2,7 +2,7 @@
 	<head>
 		<link href="main.css" rel="stylesheet">
 		<script src="https://willmurphy.co.uk/static/vendor/jquery/jquery.min.js"></script>
-		<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"> -->
+		<script src="https://use.fontawesome.com/releases/v5.8.2/js/all.js"></script>
 		<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
 		<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.8/css/mdb.min.css" rel="stylesheet">
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -76,7 +76,7 @@
 
 		<div class="container center"><br>
 			<h1> Pin JSON Generator </h1>
-			<a href="https://willow.systems/integrate-pebble-with-ifttt-once-again/">for rebble + ifttt</a>	
+			<a href="https://willow.systems/integrate-pebble-with-ifttt-once-again/">for rebble + ifttt (<i class="fab fa-readme"></i>)</a>
 			<br><br>
 			<center>
 			<div class="smaller">
@@ -95,9 +95,25 @@
 			        <option value="1">Immediately</option>
 			        <option value="2">for 30 minutes later</option>
 			        <option value="3">for 60 minutes later</option>
+							<option value="4">for 3 hours later</option>
+							<option value="A">at a specific time</option>
 			    </select>
 
-			    <label for="pinIcon">Pin Icon</label>
+					<div id="advancedTime">
+					Set the pin time to the next occurence of
+					<table><tr><td class="timebox">
+						<input type="text" id="specific-hour" class="smalltext form-control mb-4 ctime" placeholder="hh" style="">
+					</td><td style="padding-bottom: 25px;">:</td><td class="timebox">
+						<input type="text" id="specific-minute" class="smalltext form-control mb-4 ctime" placeholder="mm" style="">
+					</td><td class="dim">&nbsp 00:00 - 23:59</td></tr></table>
+					</div>
+
+					<label for="pinIcon">Pin Icon</label>
+ 				 	<div class="row">
+ 				 	<div class="col-sm-1">
+ 				 	<img class="piniconimg" id="IconPreview" src="img/NOTIFICATION_GENERIC.svg"><img>
+ 				 	</div>
+ 				 	<div class="col-sm-11">
 			    <select class="browser-default custom-select mb-4" id="pinIcon">
 			        <option value="NOTIFICATION_GENERIC">NOTIFICATION_GENERIC</option>
 			        <option value="NOTIFICATION_FLAG">NOTIFICATION_FLAG</option>
@@ -157,12 +173,20 @@
 							<option value="WATCH_DISCONNECTED">WATCH_DISCONNECTED</option>
 							<option value="TV_SHOW">TV_SHOW</option>
 							<option value="LOCATION">LOCATION</option>
-							<option value="SETTINGS">SETTINGS</option>
 			    </select>
+					</div>
+					</div>
 
-			    <button class="btn btn-primary my-4" onclick="createPin()" id="sendbtn">Generate JSON</button>
+					<div class="custom-control custom-checkbox">
+						<input type="checkbox" class="custom-control-input" id="includeNotification">
+						<label class="custom-control-label" for="includeNotification">Include reminder when pin becomes active</label>
+					</div>
 
+
+			    <button class="btn btn-primary my-4" onclick="createPin()" id="sendbtn">Generate JSON</button><small class="dim">or tell me how to use this</small>
+					<br>
 					<div id="msgdiv"></div>
+					<br><br><br><br>
 			</div>
 			</center>
 		</div>

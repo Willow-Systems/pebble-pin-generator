@@ -18,12 +18,42 @@ function createmsg(style, message) {
   </button>\
 </div>');
 }
+function is_timeString(str) {
+ regexp = /^([0-1][0-9]|2[0-3]):([0-5][0-9])$/;
+ return (regexp.test(str))
+}
+function timeConvert(n) {
+  var hours = (n / 60);
+  var rhours = Math.floor(hours);
+  var minutes = (hours - rhours) * 60;
+  var minutes = Math.round(minutes);
+  var time = {}
+  time.minutes = minutes;
+  time.hours = rhours;
+
+  if (time.minutes.toString().length == 1) {
+    time.minutes = "0" + time.minutes
+  }
+
+  if (time.hours.toString().length == 1) {
+    time.hours = "0" + time.hours
+  }
+
+  return time;
+}
 
 function sanityError(com, name) {
   $('#' + com).addClass("error");
   createmsg("danger", name + " has an invalid or missing value");
   $('#' + com).focusout(function() {
     $('#' + com).removeClass("error");
+  });
+}
+function sanityErrorByClass(com, name) {
+  $('.' + com).addClass("error");
+  createmsg("danger", name + " has an invalid or missing value");
+  $('.' + com).focusout(function() {
+    $('.' + com).removeClass("error");
   });
 }
 
@@ -38,12 +68,43 @@ function createPin() {
     sanityError("pinTitle", "Pin Title");
     return;
   }
+  if ($('#pinTime').val() == "A") {
+    if (is_timeString($('#specific-hour').val() + ":" + $('#specific-minute').val()) == false) {
+      sanityErrorByClass("ctime", "Custom time");
+      return;
+    }
+  }
+
 
 
   var pin = {};
   // pin.id = "ws-ifttt-" + uuidv4();
   // pin.id = "123";
+
   pin.time = $('#pinTime').val();
+
+  if (pin.time == "A") {
+    //It's the 'advanced time'
+
+    var offset = new Date().getTimezoneOffset();
+
+    var mins = parseInt($('#specific-minute').val()) + (parseInt($('#specific-hour').val())*60)
+
+    if (offset[0] == "-") {
+      mins = mins - parseInt(offset)
+    } else {
+      mins = mins + parseInt(offset)
+    }
+
+    var time = timeConvert(mins);
+
+
+
+
+
+    pin.clocktime = time.hours + ":" + time.minutes;
+
+  }
   pin.layout = {};
   pin.layout.type = "genericPin";
 
@@ -92,5 +153,20 @@ function start() {
   }
   $('#timelineToken').focusout(function() {
     setSetting("token",$('#timelineToken').val());
+  });
+
+  $( "#pinIcon" ).change(function() {
+    $("#IconPreview").prop("src","img/" + $('#pinIcon').val() + ".svg");
+  });
+
+  if ($('#pinTime').val() != "A") { $('#advancedTime').hide(); }
+  $("#IconPreview").prop("src","img/" + $('#pinIcon').val() + ".svg");
+
+  $("#pinTime").change(function() {
+    if ($('#pinTime').val() == "A") {
+      $('#advancedTime').show();
+    } else {
+      $('#advancedTime').hide();
+    }
   });
 }

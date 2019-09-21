@@ -7,16 +7,23 @@ body {
 .smaller {
 	max-width: 70%;
 	text-align: left;
-	}
+}
 small {
 	cursor: pointer;
 }
+.smalltext {
+	font-size: 14px !important;
+}
 .footer {
-	position: absolute;
+	/* position: absolute;
 	bottom: 0;
 	height: 40px;
 	margin-top: 40px;
 	width: 100%;
+	text-align: center; */
+	width: 100%;
+	height : 60px;
+	display: inline-block;
 	text-align: center;
 }
 .spinner-border {
@@ -32,4 +39,32 @@ small {
 .btn-fixed {
 	width: 20%;
 	margin-top: 20px;
+}
+.piniconimg {
+	height: 100%;
+	width: 100%;
+	min-width: 25px;
+	min-height: 25px;
+	margin: 5%;
+	box-shadow: none;
+	margin-bottom: 50px;
+}
+.col-sm-1 {
+	max-height: 35px;
+	margin-bottom: 25px;
+}
+.custom-checkbox {
+	/* margin-top: 30px; */
+	margin: 0px;
+	margin-left: 5px;
+}
+.timebox {
+	width: 50px;
+}
+table {
+	margin-top: 15px;
+}
+.dim {
+	color: #AAA;
+	padding-bottom: 25px;
 }
